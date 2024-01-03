@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý Loại sách</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../CSS/home.css">
+    <link rel="stylesheet" href="../CSS/QuanLySach.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" />
+    <script src="../JS/angular.min.js"></script>
+    <script src="../JS/home.js"></script>
+    <script src="../JS/homepage_sanpham.js"></script>
+    <script src="../JS/ProductED.js"></script>
+</head>
+
+<body ng-app="AppBanSach" ng-controller="HomeCtrl">
+    <div id="frame">
+        <div id="header-page">
+            <div id="header-left">
+                <span>ADMIN</span>
+                <a class="log-out" href="./login.html"><i
+                        class="fa-solid fa-arrow-right-from-bracket">&nbsp;&nbsp;</i>Đăng Xuất</a>
+            </div>
+            <div id="header-right">
+                <b class="title">HỆ THỐNG QUẢN TRỊ NỘI DUNG</b>
+            </div>
+        </div>
+        <div id="content-page">
+            <div class="menu">
+                <nav>
+                    <ul>
+                        <li><a id="menucategory" class="link" href="./home.html">Menu</a></li>
+                        <li>
+                            <a href="Quanlyhoadonban.html">
+                                <div class="link" href="#">Hóa đơn bán</div>
+                            </a>
+                            <a href="pageProduct.html">
+                                <div class="link" href="#">Khách hàng</div>
+                            </a>
+                            <a href="pageProduct.html">
+                                <div class="link" href="#">Hóa đơn nhập</div>
+                            </a>
+                            <a href="Quanlynhacungcap.html">
+                                <div class="link" href="#">Nhà cung cấp</div>
+                            </a>
+                            <a href="Quanlyloaisach.html">
+                                <div class="link" href="#">Thể loại</div>
+                            </a>
+                            <a href="Quanlysach.html">
+                                <div class="link" href="#">Sách</div>
+                            </a>
+                            <a href="pageProduct.html">
+                                <div class="link" href="#">Tác giả</div>
+                            </a>
+                            <a href="pageProduct.html">
+                                <div class="link" href="#">Người dùng</div>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="product">
+                <h2> <i class="fa-solid fa-circle-arrow-right"
+                        style="font-size: 30px; color: blue; margin-top: 10px;"></i>&nbsp;&nbsp;QUẢN LÝ SẢN PHẨM</h2>
+                <!-- <button class="add">THÊM MỚI</button>
+                <button class="delete">XÓA NHIỀU</button> -->
+            </div>
+            <div style="float: left; width: 45%;margin-top: 18px;">
+                <form>
+                    <div class="col-12 col-s-12 padding-box">
+                        <label for="txtright">Mã loại:</label>
+                    </div>
+                    <div class="col-12 col-s-12 padding-box">
+                        <input type="text" id="maloai" placeholder="Nhập mã loại..Tự động sinh nếu không nhập..."
+                            ng-model="newProduct.maLoai">
+                    </div>
+                    <div class="col-12 col-s-12 padding-box">
+                        <label for="txtright">Tên loại:</label>
+                    </div>
+                    <div class="col-12 col-s-12 padding-box">
+                        <input type="text" id="tenloai" placeholder="Nhập tên loại..." ng-model="newProduct.tenLoai">
+                    </div>
+                    <div class="col-12 col-s-12 padding-box">
+                        <label for="txtright">Mô tả:</label>
+                    </div>
+                    <div class="col-12 col-s-12 padding-box">
+                        <input type="text" id="mota" placeholder="Mô tả loại sách..." ng-model="newProduct.moTa">
+                    </div>
+                    <div class="col-12 col-s-12 padding-box">
+                        <label for="txtright">Hình ảnh:</label>
+                    </div>
+                    <div class="col-12 col-s-12 padding-box">
+                        <input type="file" id="categoryimage" onchange="loadFile(event)" accept="image/*">
+                        <center>
+                            <span style="float: left;">View:</span>
+                            <img id="viewimg" style="max-width:180px;max-height:180px;margin-top: 10px;">
+                        </center>
+                    </div>
+                    <!-- <div class="col-12 col-s-12 padding-box">
+                      <textarea id="ghichu" cols="197" rows="4"
+                          placeholder="Nhập ghi chú (không bắt buộc)..."></textarea>
+                  </div> -->
+                </form>
+                <hr>
+                <script>
+                </script>
+                <button class="btn-form" style="background-color: rgba(44, 140, 15, 0.8);" onclick="ThemLoaiSach()">Thêm
+                    sản phẩm</button>
+                <!-- <button class="btn-form" style="background-color: rgba(44, 140, 15, 0.8);" ng-click="ApiThemSach()">Thêm
+                    sản phẩm</button> -->
+                <button class="btn-form" style="background-color: rgba(227, 32, 21, 0.8);">Nhập
+                    mới</button>
+                <button class="btn-form" style="background-color: rgba(14, 87, 224, 0.8);" id="btnUpdate"
+                    onclick="CapNhat()">Cập nhật thông tin</button>
+            </div>
+            <div class="padding-box" style="width: 45%; float: left;">
+                <button class="add">THÊM MỚI</button>
+                <button class="delete" onclick="XoaSachAll()">XÓA NHIỀU</button>
+                <table id="tb_sach" style="width: 100%; border-collapse: collapse; border-color: #fff ;float: left;">
+                    <thead>
+                        <tr>
+                            <th class="checkboxx"><input type="checkbox" name="check" id="check"
+                                    onclick="CheckAll(this)"></th>
+                            <th class="mahd">Mã loại</th>
+                            <th class="maloai">Tên Loại</th>
+                            <th class="tensach">Mô tả</th>
+                            <th class="edit">Hình ảnh</th>
+                            <th class="edit">Tools</th>
+                        </tr>
+                    </thead>
+                    <tbody id="listCategorys"></tbody>
+                    <!-- API -->
+                    <!-- <tr ng-repeat="y in listItem" ng-click="selectRow(y)">
+                        <td class="le"><input type="checkbox" name="check_all" id="check"></td>
+                        <td class="le">{{y.maSach}}</td>
+                        <td class="le">{{y.tenLoai}}</td>
+                        <td class="le">{{y.tenSach}}</td>
+                        <td class="le">{{y.gia}}</td>
+                        <td class="le">{{y.soLuong}}</td>
+                        <td class="le">{{y.tacGia}}</td>
+                        <td class="le" id="bc">{{y.bookCover}} </td>
+                        <td class="le">
+                            <button ng-click="ApiSuaSach(y.maSach)"><i class="fa-regular fa-pen-to-square" title="Sửa"></i></button>
+                            <button ng-click="ApiXoaSach(y.maSach)"><i class="fa-regular fa-trash-can" ></i></button>
+                        </td>
+                    </tr> -->
+                </table>
+            </div>
+            <hr>
+            <div class="number-page">
+                <a href="">1</a>
+                <a href="">2</a>
+                <a href="">3</a>
+                <a href="">4</a>
+                <a href="">5</a>
+                <a href="">6</a>
+                <a href="">7</a>
+                <a href="">8</a>
+                <a href="">9</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        var list = JSON.parse(localStorage.getItem("Categorybook")) || [];
+        function loadFile(event) {
+            var image = document.getElementById('viewimg');
+            image.src = URL.createObjectURL(event.target.files[0]);
+        }
+
+        function ThemLoaiSach() {
+            var maloai = document.getElementById("maloai").value;
+            var tenloai = document.getElementById("tenloai").value;
+            var mota = document.getElementById("mota").value;
+            var categoryimage = document.getElementById("categoryimage").value;
+            var number = /^[0-9]+$/;
+
+            if (maloai == null || maloai == "") {
+                var d = new Date();
+                maloai = Number(d);
+            }
+            if (tenloai == null || tenloai == "") {
+                alert("Vui lòng thêm tên loại!");
+                return false;
+            }
+            else if (mota == null || mota == "") {
+                alert("Vui lòng thêm mô tả loại sách!");
+                return false;
+            }
+            else {
+                for (var x of list) {
+                    if (x.maloai == maloai) {
+                        alert("Mã loại sách đã tồn tại! Vui lòng nhập lại!")
+                        return false;
+                    }
+                }
+            }
+            // $scope.ApiThemSach(masach,maloai,tensach,gia,soluong,tacgia,bookcover);
+            console.log('AddLoaiSach');
+            if (list == null) list = [];
+            var categorybook = {
+                "maloai": maloai,
+                "tenloai": tenloai,
+                "mota": mota,
+                "categoryimage": categoryimage
+            };
+            list.push(categorybook);
+            localStorage.setItem("Categorybook", JSON.stringify(list));
+            alert("Đã thêm thành công!");
+            location.reload();
+        }
+        function SuaLoaiSach(maloai) {
+            for (x of list) {
+                if (x.maloai == maloai) {
+                    document.getElementById("maloai").value = x.maloai;
+                    document.getElementById("tenloai").value = x.tenloai;
+                    document.getElementById("mota").value = x.mota;
+                    document.getElementById("categoryimage").value = x.categoryimage;
+                }
+            }
+        }
+        function LoadData() {
+            var str = "";
+            var sl = 0;
+            list.sort();
+            for (x of list) {
+                sl++;
+                str += `
+                        <tr>
+                            <td class="le"><input type="checkbox" id="check" name="check_all"></td>
+                            <td class="le">`+ x.maloai + `</td>
+                            <td class="le">`+ x.tenloai + `</td>
+                            <td class="le">`+ x.mota + `</td>
+                            <td class="le">
+                                <img src="`+ x.categoryimage + `"></td>
+                            <td class="le">
+                                <!-- <i class="fa-solid fa-magnifying-glass"></i> -->
+                                <i class="fa-regular fa-pen-to-square" title="Sửa" onclick="SuaLoaiSach(`+ x.maloai + `)"></i>
+                                <i class="fa-regular fa-trash-can" onclick="XoaLoaiSach(`+ x.maloai + `)"></i>
+                            </td>
+                        </tr>
+                    `;
+            }
+            document.getElementById("listCategorys").innerHTML = str;
+            // $('#soluong').html(sl);
+        }
+        LoadData()
+        function CapNhat() {
+            var maloai = document.getElementById("maloai").value;
+            var tenloai = document.getElementById("tenloai").value;
+            var mota = document.getElementById("mota").value;
+            var categoryimage = document.getElementById("categoryimage").value;
+            var number = /^[0-9]+$/;
+            var ok = true;
+
+            if (maloai == null || maloai == "") {
+                var d = new Date();
+                maloai = Number(d);
+            }
+            else if (tenloai == null || tenloai == "") {
+                alert("Vui lòng thêm tên loại sách!");
+                return false;
+            }
+            else if (mota == null || mota == "") {
+                alert("Vui lòng thêm mô tả loại sách!");
+                return false;
+            }
+
+            for (x of list) {
+                if (x.maloai == maloai) {
+                    x.tenloai = tenloai;
+                    x.mota = mota;
+                    x.categoryimage = categoryimage;
+                    ok = false;
+                    break;
+                }
+            }
+
+            if (ok == false) {
+                alert("Cập nhật thông tin thành công!");
+                localStorage.setItem("Product", JSON.stringify(list));
+                location.reload();
+            }
+            else {
+                alert("Cập nhật thông tin thất bại!");
+            }
+        }
+        function XoaLoaiSach(maloai) {
+            if (confirm("Bạn chắc chắn muốn xóa!")) {
+                var index = list.findIndex(x => x.maloai == maloai);
+                if (index >= 0) {
+                    list.splice(index, 1);
+                }
+                LoadData();
+                localStorage.setItem('Product', JSON.stringify(list));
+            }
+        }
+        function CheckAll(parent) {
+            var ids = document.getElementsByTagName('input');
+            for (var i = 0; i < ids.length; i++) {
+                if (ids[i].name == "check_all") {
+                    ids[i].checked = parent.checked;
+                }
+            }
+        }
+        function XoaLoaiSachAll() {
+            if (confirm("Bạn chắc chắn muốn xóa!")) {
+                var checkall = document.getElementById('check');
+                if (checkall.checked) {
+                    localStorage.setItem('Product', JSON.stringify(null));
+                }
+                location.reload();
+            }
+        }
+        // localStorage.removeItem("Product");
+    </script>
+    <!-- <script src="./home.js"></script> -->
+</body>
+
+</html>

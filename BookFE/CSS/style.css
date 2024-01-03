@@ -1,0 +1,91 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fafafa;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    padding: 10px 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.logo img {
+    width: 150px;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+}
+
+.nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav li {
+    margin-right: 20px;
+}
+
+.nav a {
+    text-decoration: none;
+    color: #000;
+    font-size: 16px;
+}
+
+.nav a:hover {
+    color: #333;
+}
+
+.search-bar {
+    width: 200px;
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.main {
+    display: flex;
+}
+
+.video-list {
+    flex: 3;
+    padding: 20px;
+}
+
+.video-list h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.video-card {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.video-thumbnail {
+    width: 150px;
+    height: auto;
+    border-radius: 5px;
+}
+
+.video-info {
+    margin-left: 20px;
+}
+
+.video-title {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.video-channel {
+    font-size: 14px;
+    color: #888;
+}
